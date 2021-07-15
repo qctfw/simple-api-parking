@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('list')->group(function () {
+    Route::get('plat', [Api\ParkingController::class, 'getByPlat']);
+    Route::get('color', [Api\ParkingController::class, 'getByColor']);
 });
+
+Route::post('check-in', [Api\ParkingController::class, 'checkIn']);
+Route::post('check-out', [Api\ParkingController::class, 'checkOut']);
