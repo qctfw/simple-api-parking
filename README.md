@@ -3,7 +3,15 @@
 Simple Restful API with Laravel and JSON (without database)
 
 ## Installation
-Just install `composer` packages and the app is ready to go.
+
+1. Copy `.env.example` to `.env`
+
+2. Install `composer` packages.
 ```bash
-composer install
+    composer install
+```
+
+3. Generate the application key.
+```bash
+    php artisan key:generate
 ```
