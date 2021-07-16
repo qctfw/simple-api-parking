@@ -56,7 +56,7 @@ class ParkingHistoryRepository implements ParkingHistoryRepositoryInterface
 
     public function isVehicleParked(string $plat)
     {
-        return is_null($this->getParkedVehicle($plat));
+        return !is_null($this->getParkedVehicle($plat));
     }
 
     private function constructData()
