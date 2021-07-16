@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('list')->group(function () {
-    Route::get('plat', [Api\ParkingController::class, 'getByPlat']);
+    Route::get('plat', [Api\ParkingController::class, 'countPlat']);
     Route::get('color', [Api\ParkingController::class, 'getByColor']);
 });
 

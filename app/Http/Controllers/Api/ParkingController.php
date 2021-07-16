@@ -42,13 +42,25 @@ class ParkingController extends Controller
         return response()->json($check_out->toArray(), 200);
     }
 
-    public function getByPlat(Request $request)
+    public function countPlat(Request $request)
     {
-        # code...
+        $validated = $this->validate($request, [
+            'plat_nomor' => ['required', 'string']
+        ]);
+
+        $vehicles_count = $this->parking_service->countPlat($validated['plat_nomor']);
+
+        return response()->json($vehicles_count, 200);
     }
 
     public function getByColor(Request $request)
     {
-        # code...
+        $validated = $this->validate($request, [
+            'warna' => ['required', 'alpha']
+        ]);
+
+        $vehicles = $this->parking_service->getByColor($validated['warna']);
+
+        return response()->json($vehicles, 200);
     }
 }

@@ -49,6 +49,16 @@ class ParkingHistoryRepository implements ParkingHistoryRepositoryInterface
         $this->save();
     }
 
+    public function getByPlat(string $plat)
+    {
+        return $this->histories->where('plat_nomor', $plat);
+    }
+
+    public function getByColor(string $color)
+    {
+        return $this->histories->where('warna', $color);
+    }
+
     public function getParkedVehicle(string $plat)
     {
         return $this->histories->where('plat_nomor', $plat)->where('tanggal_keluar', null)->first();

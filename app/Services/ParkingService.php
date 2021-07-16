@@ -83,6 +83,28 @@ class ParkingService implements ParkingServiceInterface
         return $parked_vehicle->only('plat_nomor', 'tanggal_masuk', 'tanggal_keluar', 'jumlah_bayar');
     }
 
+    public function countPlat(string $plat)
+    {
+        $vehicles = $this->parking_history_repository->getByPlat($plat);
+
+        return [
+            'jumlah_kendaraan' => $vehicles->count()
+        ];
+    }
+
+    public function getByColor(string $color)
+    {
+        $vehicles = $this->parking_history_repository->getByColor(strtolower($color));
+
+        $plat = $vehicles->map(function ($item) {
+            return $item['plat_nomor'];
+        });
+
+        return [
+            'plat_nomor' => $plat
+        ];
+    }
+
     private function getPrice(string $type, Carbon $check_in_date, Carbon $check_out_date)
     {
         switch ($type) {
